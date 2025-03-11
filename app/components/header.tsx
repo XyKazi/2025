@@ -14,7 +14,7 @@ export default function Header() {
                 {["home", "projects", "skills", "contact"].map((item) => (
                     <NavLink
                         key={item}
-                        to={`#${item}`}
+                        to={`${item}`}
                         className="capitalize text-xl tracking-wider hover:text-purple-400 transition-colors"
                     >
                         {item}

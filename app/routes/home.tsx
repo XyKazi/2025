@@ -2,7 +2,6 @@ import type { Route } from "./+types/home";
 import Header from "~/components/header";
 import { Link } from "react-router";
 import { ArrowRight, Code, ExternalLink, Github, Mail, Menu } from "lucide-react"
-
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "New React Router App" },
@@ -11,6 +10,8 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+
+
   return (
     <div>
       <Header />
@@ -19,7 +20,7 @@ export default function Home() {
           className="max-w-4xl"
         >
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-            Crafting digital <span className="text-purple-500">experiences</span> that leave an impression
+            Bjorn<span className="text-purple-500"> Heuten</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl">
             Full-stack developer specializing in creating unique, performant, and accessible web applications that solve
@@ -29,7 +30,7 @@ export default function Home() {
             <button
               className="bg-purple-600 hover:bg-purple-700 text-white rounded-full"
             >
-              <Link to="#projects">
+              <Link to="#projects" className="flex flex-row items-center px-4 py-2">
                 View my work <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </button>
