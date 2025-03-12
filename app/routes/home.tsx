@@ -7,8 +7,8 @@ import { useState, useEffect } from "react"
 import { ArrowRight, Code, ExternalLink, Github, Linkedin, Mail, Menu } from "lucide-react"
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Bjorn Heuten | Portfolio" },
+    { name: "description", content: "bjornheuten.nl" },
   ];
 }
 
