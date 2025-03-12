@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -14,7 +16,7 @@ export default function Header() {
                 {["home", "projects", "skills", "contact"].map((item) => (
                     <NavLink
                         key={item}
-                        to={`${item}`}
+                        to={`#${item}`}
                         className="capitalize text-xl tracking-wider hover:text-purple-400 transition-colors"
                     >
                         {item}
@@ -27,33 +29,41 @@ export default function Header() {
                 className="md:hidden focus:outline-none"
                 onClick={() => setMenuOpen(!menuOpen)}
             >
-                <div className="h-6 w-6 bg-gray-800"></div>
+                <Menu size={24} className="text-white" />
                 <span className="sr-only">Toggle menu</span>
             </button>
 
-            {/* Mobile Menu */}
-            {menuOpen && (
-                <div className="md:hidden fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center space-y-6">
-                    {/* make an close button */}
-                    <button
-                        className="absolute top-4 right-4"
-                        onClick={() => setMenuOpen(false)}
+            {/* Mobile Menu with Animation */}
+            <AnimatePresence>
+                {menuOpen && (
+                    <motion.div
+                        initial={{ y: "-100%", opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: "-100%", opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        className="md:hidden fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center space-y-6"
                     >
-                        <div className="h-6 w-6 bg-gray-800"></div>
-                        <span className="sr-only">Close menu</span>
-                    </button>
-                    {['home', 'projects', 'skills', 'contact'].map((item) => (
-                        <NavLink
-                            key={item}
-                            to={`#${item}`}
-                            className="capitalize text-2xl text-white hover:text-purple-400 transition-colors"
+                        {/* Close button */}
+                        <button
+                            className="absolute top-4 right-4"
                             onClick={() => setMenuOpen(false)}
                         >
-                            {item}
-                        </NavLink>
-                    ))}
-                </div>
-            )}
+                            <X size={24} className="text-white" />
+                            <span className="sr-only">Close menu</span>
+                        </button>
+                        {["home", "projects", "skills", "contact"].map((item) => (
+                            <NavLink
+                                key={item}
+                                to={`#${item}`}
+                                className="capitalize text-2xl text-white hover:text-purple-400 transition-colors"
+                                onClick={() => setMenuOpen(false)}
+                            >
+                                {item}
+                            </NavLink>
+                        ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </header>
     );
 }
